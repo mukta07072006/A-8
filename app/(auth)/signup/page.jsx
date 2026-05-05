@@ -13,7 +13,7 @@ import {Spinner} from "@heroui/react";
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/navigation'; 
 
-const page = () => {
+const SignUpPage = () => {
      const router = useRouter();
     const [isLoading, setIsLoading] = React.useState(false);
     const {data, isPending} = useSession();
@@ -47,11 +47,9 @@ const page = () => {
     
                 if(user) {
                  router.push("/");
-                  notify();
+                  toast.success("You are already signed in!");
                 }
-              },[data, router])
-    
-             const notify = () => toast("You are already signed in!", { type: "success" });
+              },[data, router, user])
     
             if(isPending) {
               return (
@@ -179,4 +177,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default SignUpPage;

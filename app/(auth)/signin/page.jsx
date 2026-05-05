@@ -10,47 +10,72 @@ import { authClient, useSession } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {Spinner} from "@heroui/react";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
-const signIn = () => {
+const SignInPage = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
   const {data, isPending} = useSession();
   const user = data?.user;
-    const onSubmit = async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            console.log(formData)
-            const data = Object.fromEntries(formData.entries());
-            console.log(data);
-    
-            const {signInData, error} = await authClient.signIn.email({
-              email: data.email,
-              password: data.password,
-              callbackURL: "/"
-            });
-    
-            if (error) {
-              console.error("Sign-in error:", error);
-              alert("Sign-in failed: " + error.message);
-              return;
-            }
-        }
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const formData = new FormData(e.target);
+    const formValues = Object.fromEntries(formData.entries());
+
+    const { signInData, error } = await authClient.signIn.email({
+      email: formValues.email,
+      password: formValues.password,
+      callbackURL: "/",
+    });
+
+    setIsLoading(false);
+
+    if (error) {
+      console.error("Sign-in error:", error);
+      toast.error("Sign-in failed: " + error.message);
+      return;
+    }
+
+    if (signInData?.redirectURL) {
+      window.location.assign(signInData.redirectURL);
+      return;
+    }
+
+    router.push("/");
+  };
+
+  const signInWithGoogle = async () => {
+    setIsLoading(true);
+    const { signInData, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+    setIsLoading(false);
+
+    if (error) {
+      console.error("Google sign-in error:", error);
+      toast.error("Google sign-in failed: " + error.message);
+      return;
+    }
+
+    if (signInData?.redirectURL) {
+      window.location.assign(signInData.redirectURL);
+    }
+  };
         
 
 
         
 
-        useEffect(()=>{
-
-            if(user) {
-             router.push("/");
-              notify();
-            }
-          },[data, router])
-
-         const notify = () => toast("You are already signed in!", { type: "success" });
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+      toast.success("You are already signed in!");
+    }
+  }, [data, router, user]);
 
         if(isPending) {
           return (
@@ -152,6 +177,15 @@ const signIn = () => {
   </button>
 </form>
 
+  <button
+    type="button"
+    disabled={isLoading}
+    onClick={signInWithGoogle}
+    className="w-full h-14 mt-3 flex items-center justify-center gap-2 border border-zinc-200 dark:border-zinc-700 bg-white text-zinc-800 dark:bg-zinc-900 dark:text-white rounded-2xl shadow-sm hover:shadow-md transition-all disabled:opacity-70"
+  >
+    <span>Sign in with Google</span>
+  </button>
+
          <Link href="/signup" className="flex gap-2 rounded-full cursor items-center border border-white px-4 mt-3 py-1">
             didnt have an account? Sign Up
           </Link>
@@ -162,4 +196,4 @@ const signIn = () => {
     );
 };
 
-export default signIn;
+export default SignInPage;

@@ -10,7 +10,7 @@ import {
 } from "@gravity-ui/icons";
 import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
@@ -31,11 +31,18 @@ const Navbar = () => {
     );
   }
 
-  const notify = () => toast("Signed out successfully!", { type: "error" });
-  const signOutFunction = ()=> {
-    signOut();
-    setIsOpen(false);
-    notify();
+  const notify = () => toast("Signed out successfully!", { type: "success" });
+  const notifyError = (message) => toast(message, { type: "error" });
+
+  const signOutFunction = async () => {
+    try {
+      await signOut({ callbackURL: "/" });
+      notify();
+      setIsOpen(false);
+    } catch (error) {
+      console.error("Sign-out error:", error);
+      notifyError("Unable to sign out. Please try again.");
+    }
   }
 
   return (
