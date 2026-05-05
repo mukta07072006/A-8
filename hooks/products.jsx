@@ -8,7 +8,7 @@ const UseApps = () => {
  
     useEffect(()=>{
         const datafetch = async ()=> {
-            const res = await fetch("https://suncart-assignment-8.vercel.app/api/products.json")
+            const res = await fetch("https://suncart-assignment-8.vercel.app/api/products")
             const data = await res.json()
             setProducts(data)
             setLoading(false)
