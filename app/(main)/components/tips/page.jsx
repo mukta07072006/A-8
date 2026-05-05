@@ -30,7 +30,7 @@ const SummerCare = () => {
   ];
 
   return (
-    <section className="py-20 bg-white dark:bg-zinc-950">
+    <section className="py-20 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-zinc-900 dark:text-white">
