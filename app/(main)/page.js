@@ -1,7 +1,7 @@
 import Popular from "../../components/Popular/page";
 import Hero from "../../components/Hero/page";
-import SummerCare from "../components/tips/page";
-import TopBrands from "../components/TopBrand/page";
+import SummerCare from "../../components/tips/page";
+import TopBrands from "../../components/TopBrand/page";
 
 
 export default function Home() {
