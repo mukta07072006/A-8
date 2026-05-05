@@ -11,9 +11,11 @@ import {
 import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
 import { ToastContainer, toast } from 'react-toastify';
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
 
+    const pathname = usePathname();
   const [active, setActive] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -53,35 +55,21 @@ const Navbar = () => {
 
           {/* 2. Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-                      <a 
-                      href="#" 
-                      className={`text-sm font-bold transition-colors hover:text-orange-500 
-                        ${active === "home" 
-                          ? "text-orange-500" 
-                          : "text-zinc-600 dark:text-zinc-400"
-                        }`}
-                      onClick={(e) => {
-                        e.preventDefault(); 
-                        setActive("home");
-                      }}
-                    >
-                      Home
-                    </a>
+                      <Link 
+        href="/" 
+        className={`text-sm font-bold transition-colors hover:text-orange-500 
+          ${pathname === "/" ? "text-orange-500" : "text-zinc-600 dark:text-zinc-400"}`}
+      >
+        Home
+      </Link>
 
-                    <a 
-                      href="#" 
-                      className={`text-sm font-bold transition-colors hover:text-orange-500 
-                        ${active === "products" 
-                          ? "text-orange-500" 
-                          : "text-zinc-600 dark:text-zinc-400"
-                        }`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setActive("products");
-                      }}
-                    >
-                      Products
-                    </a>
+      <Link 
+        href="/allproducts" 
+        className={`text-sm font-bold transition-colors hover:text-orange-500 
+          ${pathname === "/allproducts" ? "text-orange-500" : "text-zinc-600 dark:text-zinc-400"}`}
+      >
+        Products
+      </Link>
           </div>
 
           {/* 3. Right Side Actions */}
@@ -99,24 +87,19 @@ const Navbar = () => {
 
             {/* User Profile (Non-HeroUI Dropdown) */}
             <div className="relative group">
-              <button className="flex items-center gap-1 p-1 rounded-full border-2 border-transparent hover:border-amber-400 transition-all">
+              <Link href={"/profile"} className="flex items-center gap-1 p-1 rounded-full border-2 border-transparent hover:border-amber-400 transition-all">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-100 to-orange-100 flex items-center justify-center text-orange-600">
                   <Person size={18} />
                 </div>
-                <ChevronDown size={14} className="text-zinc-400" />
-              </button>
+                
+              </Link>
               
-              {/* Simple CSS Dropdown */}
-              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-2 group-hover:translate-y-0">
-                <a href="#" className="block px-4 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-orange-50 hover:text-orange-600">My Orders</a>
-                <a href="#" className="block px-4 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-orange-50 hover:text-orange-600">Suncart Plus</a>
-                <hr className="my-1 border-zinc-100 dark:border-zinc-800" />
-                <button onClick={()=> signOutFunction()} className="flex items-center ml-2 gap-2 px-3 py-2 bg-red-500 text-white font-bold  cursor-pointer rounded-xl transition-all">
+             
+              
+            </div>
+            <button onClick={()=> signOutFunction()} className="flex items-center ml-2 gap-2 px-3 py-2 bg-red-500 text-white font-bold  cursor-pointer rounded-xl transition-all">
                   Log Out
                 </button>
-                <a href="#" className="block px-4 py-2 text-sm font-bold text-red-500 hover:bg-red-50"></a>
-              </div>
-            </div>
 
             {/* Mobile Menu Toggle */}
             <button 
@@ -137,15 +120,23 @@ const Navbar = () => {
 
       {/* 4. Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 px-4 py-4 space-y-3">
-          <a href="#" className="block text-base font-bold text-zinc-900 dark:text-white">Groceries</a>
-          <a href="#" className="block text-base font-bold text-orange-500">Daily Deals</a>
-          <a href="#" className="block text-base font-bold text-zinc-900 dark:text-white">Best Sellers</a>
-          <div className="pt-2 border-t border-zinc-100 dark:border-zinc-800">
-             <button className="w-full flex items-center justify-center gap-2 bg-orange-500 text-white font-bold py-3 rounded-xl">
-               Checkout Now
-             </button>
-          </div>
+        <div className="md:hidden bg-white dark:bg-zinc-950 flex flex-col gap-3 border-b border-zinc-200 dark:border-zinc-800 px-4 py-4 space-y-3">
+          <Link 
+        href="/" 
+        className={`text-sm font-bold transition-colors hover:text-orange-500 
+          ${pathname === "/" ? "text-orange-500" : "text-zinc-600 dark:text-zinc-400"}`}
+      >
+        Home
+      </Link>
+
+      <Link 
+        href="/allproducts" 
+        className={`text-sm font-bold transition-colors hover:text-orange-500 
+          ${pathname === "/allproducts" ? "text-orange-500" : "text-zinc-600 dark:text-zinc-400"}`}
+      >
+        Products
+      </Link>
+          
         </div>
       )}
     </nav>

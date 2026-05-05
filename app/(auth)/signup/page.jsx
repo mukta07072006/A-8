@@ -29,6 +29,7 @@ const page = () => {
           name: data.name,
           email: data.email,
           password: data.password,
+          callbackURL: "/signin"
         });
 
         

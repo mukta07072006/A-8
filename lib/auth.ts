@@ -16,11 +16,18 @@ const client = new MongoClient(mongoUrl, {
 const db = client.db(process.env.DB_NAME || 'AuthDB');
 
 export const auth = betterAuth({
-  
+    baseURL: process.env.BETTER_AUTH_URL, 
     emailAndPassword: { 
     enabled: true, 
   }, 
   database: mongodbAdapter(db, {
     client
   }),
+  socialProviders: {
+        google: { 
+           prompt: "select_account",
+            clientId: process.env.GOOGLE_CLIENT_ID as string, 
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string, 
+        }, 
+    },
 });
