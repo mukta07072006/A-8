@@ -8,10 +8,13 @@ import {
   Bars, 
   Xmark 
 } from "@gravity-ui/icons";
-import { useSession } from "@/lib/auth-client";
+import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Navbar = () => {
+
+  const [active, setActive] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
 
   const {data , isPending} = useSession();
@@ -24,6 +27,13 @@ const Navbar = () => {
         <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-orange-500"></div>
       </div>
     );
+  }
+
+  const notify = () => toast("Signed out successfully!", { type: "error" });
+  const signOutFunction = ()=> {
+    signOut();
+    setIsOpen(false);
+    notify();
   }
 
   return (
@@ -43,9 +53,35 @@ const Navbar = () => {
 
           {/* 2. Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#" className="text-sm font-bold text-zinc-600 dark:text-zinc-400 hover:text-orange-500 transition-colors">Groceries</a>
-            <a href="#" className="text-sm font-bold text-orange-500">Daily Deals</a>
-            <a href="#" className="text-sm font-bold text-zinc-600 dark:text-zinc-400 hover:text-orange-500 transition-colors">Best Sellers</a>
+                      <a 
+                      href="#" 
+                      className={`text-sm font-bold transition-colors hover:text-orange-500 
+                        ${active === "home" 
+                          ? "text-orange-500" 
+                          : "text-zinc-600 dark:text-zinc-400"
+                        }`}
+                      onClick={(e) => {
+                        e.preventDefault(); 
+                        setActive("home");
+                      }}
+                    >
+                      Home
+                    </a>
+
+                    <a 
+                      href="#" 
+                      className={`text-sm font-bold transition-colors hover:text-orange-500 
+                        ${active === "products" 
+                          ? "text-orange-500" 
+                          : "text-zinc-600 dark:text-zinc-400"
+                        }`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setActive("products");
+                      }}
+                    >
+                      Products
+                    </a>
           </div>
 
           {/* 3. Right Side Actions */}
@@ -75,7 +111,10 @@ const Navbar = () => {
                 <a href="#" className="block px-4 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-orange-50 hover:text-orange-600">My Orders</a>
                 <a href="#" className="block px-4 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-orange-50 hover:text-orange-600">Suncart Plus</a>
                 <hr className="my-1 border-zinc-100 dark:border-zinc-800" />
-                <a href="#" className="block px-4 py-2 text-sm font-bold text-red-500 hover:bg-red-50">Log Out</a>
+                <button onClick={()=> signOutFunction()} className="flex items-center ml-2 gap-2 px-3 py-2 bg-red-500 text-white font-bold  cursor-pointer rounded-xl transition-all">
+                  Log Out
+                </button>
+                <a href="#" className="block px-4 py-2 text-sm font-bold text-red-500 hover:bg-red-50"></a>
               </div>
             </div>
 

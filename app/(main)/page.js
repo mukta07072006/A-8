@@ -1,0 +1,16 @@
+import Popular from "../components/Popular/page";
+import Hero from "./components/Hero/page";
+import SummerCare from "./components/tips/page";
+import TopBrands from "./components/TopBrand/page";
+
+
+export default function Home() {
+  return (
+    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <Hero/>
+      <Popular/>
+      <SummerCare/>
+      <TopBrands/>
+    </div>
+  );
+}
