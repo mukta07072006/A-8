@@ -9,8 +9,8 @@ const ProductsCard = ({ product }) => {
   {/* Image */}
   <div className="relative w-full aspect-[4/3] overflow-hidden flex-shrink-0">
     <Image
-      src={product.image}
-      alt={product.name}
+      src={product?.image}
+      alt={product?.name}
       fill
       className="object-cover group-hover:scale-105 transition duration-500"
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -26,29 +26,29 @@ const ProductsCard = ({ product }) => {
     {/* Top Row */}
     <div className="flex justify-between items-center">
       <span className="text-[11px] font-medium text-orange-500 uppercase tracking-wider">
-        {product.category}
+        {product?.category}
       </span>
 
       <div className="flex items-center gap-1 text-sm text-zinc-500 dark:text-zinc-300">
         <span className="text-orange-500">★</span>
-        {product.rating}
+        {product?.rating}
       </div>
     </div>
 
     {/* Title */}
     <h3 className="text-lg font-semibold text-zinc-900 dark:text-white leading-snug">
-      {product.name}
+      {product?.name}
     </h3>
 
     {/* Description */}
     <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2">
-      {product.description}
+      {product?.description}
     </p>
 
     {/* Footer */}
     <div className="flex items-center justify-between mt-auto pt-3 border-t border-zinc-100 dark:border-zinc-800">
       <span className="text-xl font-bold text-zinc-900 dark:text-white">
-        ${product.price}
+        ${product?.price}
       </span>
 
       <button className="flex items-center gap-1 text-sm font-medium text-orange-500 hover:gap-2 transition-all">
