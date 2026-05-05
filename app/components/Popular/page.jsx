@@ -2,7 +2,7 @@
 
 import UseApps from '@/hooks/products';
 import React from 'react';
-import ProductsCard from '../../../productsCard/page';
+import ProductsCard from '../productsCard/page';
 
 const Popular = () => {
 
