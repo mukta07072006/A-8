@@ -1,12 +1,15 @@
-import { products } from '../../products';
+import { NextResponse } from 'next/server';
+import { products } from '../../products'; 
 
-export default function handler(req, res) {
-  const { id } = req.query;
+export async function GET(request, { params }) {
+  // Await params if you are on Next.js 15
+  const { id } = await params;
+  
   const product = products.find((p) => p.id === Number(id));
 
   if (product) {
-    res.status(200).json(product);
-  } else {
-    res.status(404).json({ error: "Product not found" });
+    return NextResponse.json(product);
   }
+
+  return NextResponse.json({ error: "Product not found" }, { status: 404 });
 }
