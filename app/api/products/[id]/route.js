@@ -1,4 +1,4 @@
-import { products } from '@/app/api/products';
+import { products } from '../../products';
 
 export default function handler(req, res) {
   const { id } = req.query;
