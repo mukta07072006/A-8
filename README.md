@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Sun Cart
+A modern, high-performance e-commerce platform designed for a seamless shopping experience. Sun Cart bridges the gap between high-end UI design and robust backend functionality, ensuring users can browse, manage, and purchase products with ease.
 
-## Getting Started
+🌐 Live URL
+https://suncart-assignment-8.vercel.app/
 
-First, run the development server:
+🎯 Purpose
+The primary goal of Sun Cart is to provide a scalable and secure shopping environment. It focuses on solving the fragmentation in online retail by offering a centralized dashboard for users to track orders, a responsive interface for mobile users, and a secure authentication layer to protect user data.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+✨ Key Features
+Secure Authentication: Integrated with Better-Auth for social (Google) and credential-based sign-ins.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Dynamic Product Catalog: Real-time product fetching and filtering based on categories.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Responsive UI/UX: Built with a mobile-first approach using Tailwind CSS for a fluid experience across all devices.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Interactive Shopping Cart: Persistent cart management allowing users to add, remove, and adjust quantities easily.
 
-## Learn More
+User Dashboard: A dedicated space for authenticated users to manage their profiles and view session details.
 
-To learn more about Next.js, take a look at the following resources:
+📦 Tech Stack & NPM Packages
+This project leverages the latest web technologies to ensure speed and developer productivity:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Core Frameworks:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+next: The React framework for production.
 
-## Deploy on Vercel
+react: For building the user interface.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+react-dom: Entry point to the DOM and server renderers.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Authentication:
+
+better-auth: A comprehensive auth library for the server and client.
+
+@better-fetch/fetch: A type-safe fetch wrapper used for session handling.
+
+Styling & UI:
+
+tailwindcss: A utility-first CSS framework for rapid UI development.
+
+lucide-react: For clean, consistent iconography throughout the app.
+
+framer-motion: (If applicable) For smooth animations and transitions.
+
+Utilities:
+
+clsx & tailwind-merge: For managing conditional CSS classes efficiently.
+
+🚀 Getting Started
+To run this project locally:
+
+Clone the repository:
+
+Bash
+git clone https://github.com/your-username/sun-cart.git
+Install dependencies:
+
+Bash
+npm install
+Set up Environment Variables:
+Create a .env.local file and add your BETTER_AUTH_SECRET and NEXT_PUBLIC_APP_URL.
+
+Run the development server:
+
+Bash
+    npm run dev
+    ```
