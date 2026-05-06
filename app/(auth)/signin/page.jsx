@@ -186,7 +186,7 @@ const SignInPage = () => {
     <span>Sign in with Google</span>
   </button>
 
-         <Link href="/signup" className="flex gap-2 rounded-full cursor items-center border border-white px-4 mt-3 py-1">
+         <Link href="/signup" className="flex gap-2 rounded-full cursor text-white items-center border border-white px-4 mt-3 py-1">
             didnt have an account? Sign Up
           </Link>
         
