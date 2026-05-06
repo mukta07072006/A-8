@@ -23,13 +23,7 @@ const Navbar = () => {
 
   const user = data?.user;
 
-  if(isPending) {
-    return (
-      <div className="w-full h-16 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-orange-500"></div>
-      </div>
-    );
-  }
+
 
   const notify = () => toast("Signed out successfully!", { type: "success" });
   const notifyError = (message) => toast(message, { type: "error" });
