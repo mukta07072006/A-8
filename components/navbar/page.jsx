@@ -30,7 +30,7 @@ const Navbar = () => {
 
   const signOutFunction = async () => {
     try {
-      await signOut({ callbackURL: "/" });
+      await signOut({ callbackURL: "/signin" });
       notify();
       setIsOpen(false);
     } catch (error) {
@@ -73,12 +73,12 @@ const Navbar = () => {
       </Link>
           </div>
 
-          {/* 3. Right Side Actions */}
+          
           {
             user? <div className="flex items-center gap-2 sm:gap-4">
             
 
-            {/* Cart Button */}
+            
             <button className="flex items-center gap-2 px-3 py-2 bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-xl transition-all group">
               <ShoppingCart size={18} className="text-orange-500" />
               <span className="hidden sm:inline text-xs font-black text-zinc-700 dark:text-zinc-200">
@@ -86,7 +86,7 @@ const Navbar = () => {
               </span>
             </button>
 
-            {/* User Profile (Non-HeroUI Dropdown) */}
+            
             <div className="relative group">
               <Link href={"/profile"} className="flex items-center gap-1 p-1 rounded-full border-2 border-transparent hover:border-amber-400 transition-all">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-100 to-orange-100 flex items-center justify-center text-orange-600">
@@ -102,7 +102,7 @@ const Navbar = () => {
                   Log Out
                 </button>
 
-            {/* Mobile Menu Toggle */}
+            
             <button 
               className="md:hidden p-2 text-zinc-600"
               onClick={() => setIsOpen(!isOpen)}
@@ -119,7 +119,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* 4. Mobile Menu */}
+      
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-zinc-950 flex flex-col gap-3 border-b border-zinc-200 dark:border-zinc-800 px-4 py-4 space-y-3">
           <Link 

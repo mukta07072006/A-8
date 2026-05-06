@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Mail, MapPin, Edit } from "lucide-react";
 import { useSession } from "@/lib/auth-client";
 import Logo from "@/assets/pfp.webp";
+import NoAccount from "@/components/nodata/page";
 
 export default function ProfilePage() {
     
@@ -12,11 +13,15 @@ export default function ProfilePage() {
 
         if (!session) {
             return (
-            <button onClick={() => signIn()}>
-                Sign in
-            </button>
+                <div className="bg-black">
+                    
+                    <NoAccount/>
+                </div>
             );
         }
+
+
+       
 
     const user = session.user;
 

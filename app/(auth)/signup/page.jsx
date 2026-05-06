@@ -167,7 +167,7 @@ const SignUpPage = () => {
   </button>
 </form>
 
-         <Link href="/signin" className="flex gap-2 rounded-full cursor items-center border border-white px-4 mt-3 py-1">
+         <Link href="/signin" className="flex gap-2 rounded-full cursor text-white items-center border border-white px-4 mt-3 py-1">
             Already have an account? Log in
           </Link>
         
